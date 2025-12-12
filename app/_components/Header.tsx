@@ -1,5 +1,6 @@
 import { ThemeToggler } from '@/components/ThemeToggler'
 import { Button } from '@/components/ui/button'
+import { SignInButton } from '@clerk/nextjs'
 import { Plus } from 'lucide-react'
 import Image from 'next/image'
 import React from 'react'
@@ -38,7 +39,9 @@ const Header = () => {
 
         <div className='flex gap-3'>
             <ThemeToggler />
-            <Button className='cursor-pointer'>Create Workspace <Plus/></Button>  
+            <SignInButton mode='modal' forceRedirectUrl={'/workspace'}>
+                <Button className='cursor-pointer'>Create Workspace <Plus/></Button>
+            </SignInButton>
         </div>
     </div>
   )

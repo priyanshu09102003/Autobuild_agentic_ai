@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import { Roboto_Flex} from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
+import { ClerkThemeProvider } from "@/components/providers/ClerkThemeProvider";
+import Provider from "./Provider";
 
 
 const robotoFlex = Roboto_Flex({
@@ -27,16 +29,18 @@ export default function RootLayout({
       <body
         className={`${robotoFlex.variable} antialiased`}
       >
-
         <ThemeProvider
             attribute="class"
             defaultTheme="dark"
             enableSystem
             disableTransitionOnChange
-          >       
-            {children}
+          >
+          <ClerkThemeProvider>  
+            <Provider>    
+              {children}
+            </Provider> 
+          </ClerkThemeProvider>
         </ThemeProvider>
-        
       </body>
     </html>
   );
