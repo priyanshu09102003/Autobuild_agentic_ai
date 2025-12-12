@@ -1,0 +1,79 @@
+"use client";
+
+import { Button } from '@/components/ui/button'
+import { ArrowUp, HomeIcon, ImagePlusIcon, Key, LayoutDashboard, User } from 'lucide-react'
+import React, { useState } from 'react'
+
+const suggestions = [
+  {
+    label: 'Dashboard',
+    prompt: 'Create a modern analytics dashboard for a SaaS application to track customer metrics and revenue data. Include interactive charts, key performance indicators (KPIs), data tables with sorting and filtering, a clean sidebar navigation, and a responsive layout optimized for both desktop and mobile views.',
+    icon: LayoutDashboard
+  },
+  {
+    label: 'SignUp Form',
+    prompt: 'Create a modern and elegant sign up form with email and password input fields, real-time validation, Google and Github OAuth login buttons with icons, a terms and conditions checkbox with a link, smooth animations on focus and hover states, error handling messages, and a clean responsive design that works on all screen sizes.',
+    icon: Key
+  },
+  {
+    label: 'Hero',
+    prompt: 'Create a stunning hero section for a modern productivity SaaS landing page. Include a bold headline with gradient text effect, an engaging subtitle, a compelling call-to-action button, a secondary button for feature announcement, high-quality hero image or illustration, smooth scroll animations, subtle background patterns or gradients, and full responsive design that looks professional on all devices.',
+    icon: HomeIcon
+  },
+  {
+    label: 'User Profile Card',
+    prompt: 'Create a modern and interactive user profile card component for a social media website. Include a profile picture with hover effects, user name and bio, follower and following counts, social media links with icons, an edit profile button, activity statistics, a clean card layout with shadows and rounded corners, smooth hover animations, and fully responsive design.',
+    icon: User
+  }
+]
+
+const Hero = () => {
+
+    const [userInput , setUserInput] = useState<string>()
+  return (
+    <div className='flex flex-col items-center h-[85vh] justify-center'>
+      {/* Header and description */}
+      
+      <h2 className='font-bold text-6xl holographic'>
+        What should we Build?
+      </h2>
+      <p className='text-lg text-gray-400 mt-4'>
+        Build with <b className='font-semibold holographic'>Prompts</b>, Polish with <b className='font-semibold holographic'>Clicks</b>
+      </p>
+
+      {/* Input Box */}
+
+    <div className='w-full max-w-2xl p-5 border mt-5 rounded-2xl bg-gray-50 dark:bg-gray-900/50 border-gray-300 dark:border-gray-800'>
+        <textarea 
+            placeholder='Describe your vision...' 
+            className='w-full h-24 focus:outline-none focus:ring-0 resize-none bg-transparent text-gray-900 dark:text-gray-100 placeholder:text-gray-500 dark:placeholder:text-gray-500' 
+            value={userInput}
+            onChange={(event) => setUserInput(event.target.value)}
+        />
+
+        <div className='flex justify-between items-center'>
+            <Button variant={"ghost"} className='cursor-pointer'><ImagePlusIcon size={4} /></Button>
+            <Button className='cursor-pointer'><ArrowUp size={4} /></Button>
+        </div>
+    </div>
+
+      {/* Suggestions List */}
+
+      <div className='mt-5 flex gap-3'>
+        {suggestions.map((suggestion, index)=> (
+            <Button key={index} variant={"outline"} className='cursor-pointer'
+            onClick={() => setUserInput(suggestion.prompt)}
+            >
+                <suggestion.icon />
+                {suggestion.label}
+                
+            </Button>
+        ))}
+      </div>
+
+
+    </div>
+  )
+}
+
+export default Hero
