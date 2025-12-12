@@ -1,8 +1,11 @@
+"use client";
+
 import { ThemeToggler } from '@/components/ThemeToggler'
 import { Button } from '@/components/ui/button'
-import { SignInButton } from '@clerk/nextjs'
-import { Plus } from 'lucide-react'
+import { SignInButton, useUser } from '@clerk/nextjs'
+import { ArrowRight, Plus } from 'lucide-react'
 import Image from 'next/image'
+import Link from 'next/link'
 import React from 'react'
 
 const MenuOptions = [
@@ -17,6 +20,7 @@ const MenuOptions = [
 ]
 
 const Header = () => {
+    const {user} = useUser();
   return (
     <div className='flex items-center justify-between p-4 shadow-xl dark:border-b border-gray-500'>
         {/* Logo */}
@@ -39,9 +43,17 @@ const Header = () => {
 
         <div className='flex gap-3'>
             <ThemeToggler />
-            <SignInButton mode='modal' forceRedirectUrl={'/workspace'}>
-                <Button className='cursor-pointer'>Create Workspace <Plus/></Button>
-            </SignInButton>
+            {
+                !user ?  (<SignInButton mode='modal' forceRedirectUrl={'/workspace'}>
+                            <Button className='cursor-pointer'>Create Workspace <Plus/></Button>
+                        </SignInButton>)
+
+                        :
+
+                        (<Link href={'/workspace'}>
+                            <Button className='cursor-pointer'>My Workspace <ArrowRight/></Button>
+                        </Link>)
+            }
         </div>
     </div>
   )

@@ -36,7 +36,7 @@ export default function RootLayout({
             disableTransitionOnChange
           >
           <ClerkThemeProvider>  
-            <Provider>    
+            <Provider >    
               {children}
             </Provider> 
           </ClerkThemeProvider>
