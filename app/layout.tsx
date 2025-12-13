@@ -4,6 +4,7 @@ import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
 import { ClerkThemeProvider } from "@/components/providers/ClerkThemeProvider";
 import Provider from "./Provider";
+import { Toaster } from "@/components/ui/sonner";
 
 
 const robotoFlex = Roboto_Flex({
@@ -38,6 +39,7 @@ export default function RootLayout({
           <ClerkThemeProvider>  
             <Provider >    
               {children}
+              <Toaster />
             </Provider> 
           </ClerkThemeProvider>
         </ThemeProvider>
