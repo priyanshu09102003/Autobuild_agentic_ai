@@ -119,7 +119,7 @@ const Hero = () => {
 
 
     </div>
-  )2
+  )
 }
 
 export default Hero
