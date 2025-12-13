@@ -1,7 +1,7 @@
 "use client";
 
 import { Button } from '@/components/ui/button'
-import { SignInButton } from '@clerk/nextjs';
+import { useUser } from '@clerk/nextjs';
 import axios from 'axios';
 import { ArrowUp, HomeIcon, ImagePlusIcon, Key, LayoutDashboard, Loader2Icon, User } from 'lucide-react'
 import { useRouter } from 'next/navigation';
@@ -42,6 +42,7 @@ const Hero = () => {
     const [userInput , setUserInput] = useState<string>()
     const router = useRouter();
     const [loading, setLoading] = useState(false);
+    const { isSignedIn } = useUser();
 
 
     const createNewProject = async () => {
@@ -98,7 +99,11 @@ const Hero = () => {
         <div className='flex justify-between items-center'>
             <Button variant={"ghost"} className='cursor-pointer'><ImagePlusIcon size={4} /></Button>
             
-              <Button className='cursor-pointer' disabled={!userInput || loading} onClick={createNewProject}>{loading? <Loader2Icon size={4} className='animate-spi'/> : <ArrowUp size={4} />}</Button>
+            {isSignedIn && (
+              <Button className='cursor-pointer' disabled={!userInput || loading} onClick={createNewProject}>
+                {loading? <Loader2Icon size={4} className='animate-spin'/> : <ArrowUp size={4} />}
+              </Button>
+            )}
 
         </div>
     </div>
@@ -123,5 +128,3 @@ const Hero = () => {
 }
 
 export default Hero
-
-
