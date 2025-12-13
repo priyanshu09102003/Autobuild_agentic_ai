@@ -6,7 +6,7 @@ import React from 'react'
 
 const PlaygroundHeader = () => {
   return (
-    <div className='flex justify-between items-center p-4 shadow-xl dark:border-b border-gray-500'>
+    <div className='flex justify-between items-center p-4 shadow-md dark:shadow-none border-b border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-950'>
         <div className='flex gap-2 items-center'>
             <Image src={'/logo.svg'} alt='Logo' width={55} height={55} />
             <h1 className='font-bold text-2xl'>AutoBuild</h1>
